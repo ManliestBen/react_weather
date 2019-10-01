@@ -5,15 +5,23 @@ import { getCurrentLatLng } from '../../services/geolocation';
 
 class App extends Component {
 
+  state = {
+    lat: null,
+    lng: null
+  };
+
   async componentDidMount() {
     const {lat, lng} = await getCurrentLatLng();
-    console.log(lat, lng);
-  }
+    this.setState({lat, lng});
+  };
   
   render() {
     return (
       <div className='App'>
-        <Map />
+        <Map 
+          lat={this.state.lat}
+          lng={this.state.lng}
+        />
         <header className='App-header'>REACT WEATHER</header>
       </div>
     );
